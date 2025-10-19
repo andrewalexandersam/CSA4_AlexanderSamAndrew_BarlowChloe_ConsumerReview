@@ -90,7 +90,43 @@ public class Review {
       return 0;
     }
   }
-  
+
+  public static double totalSentiment( String fileName )
+  {
+    double total = 0;
+    String text = textToString(fileName);
+    String[] words = text.split(" ");
+    for(int i = 0; i < words.length; i++){
+      total += sentimentVal(removePunctuation(words[i]));
+    }
+    return total;
+  }
+
+
+  public static int starRating(String fileName){
+    double totalSentimentVal = totalSentiment(fileName);
+    
+    if (totalSentimentVal > 20.0){
+      return 5;
+    } 
+    else if (totalSentimentVal > 10.0){
+      return 4;
+    }
+    else if (totalSentimentVal > 0.0){
+      return 3;
+    } 
+    else if (totalSentimentVal > -10.0){
+      return 2;
+    } 
+    else if (totalSentimentVal > -20.0){
+      return 1;
+    }
+    else {
+      return 0;
+    }
+  }
+
+
   /**
    * Returns the ending punctuation of a string, or the empty string if there is none 
    */
