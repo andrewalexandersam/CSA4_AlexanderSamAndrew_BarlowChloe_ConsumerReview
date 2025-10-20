@@ -16,6 +16,13 @@ public class geniusBarReview {
       // Generate detailed report for each review
       generateDetailedReport("review1.txt");
       generateDetailedReport("review2.txt");
+      generateDetailedReport("review3.txt");
+      generateDetailedReport("review4.txt");
+      generateDetailedReport("review5.txt");
+      generateDetailedReport("review6.txt");
+      generateDetailedReport("review7.txt");
+      generateDetailedReport("review8.txt");
+      generateDetailedReport("review9.txt");
   }
   
   /**
@@ -24,7 +31,8 @@ public class geniusBarReview {
    */
   public static void analyzeAllReviews() {
       String[] reviewFiles = {"review1.txt", "review2.txt", "review3.txt", 
-                             "review4.txt", "review5.txt", "review6.txt"};
+                             "review4.txt", "review5.txt", "review6.txt", 
+                             "review7.txt", "review8.txt", "review9.txt"};
       
       System.out.println("=== GENIUS BAR REVIEW ANALYSIS ===");
       
@@ -33,16 +41,16 @@ public class geniusBarReview {
           String fileName = reviewFiles[i];
           double originalSentiment = Review.totalSentiment(fileName);
           double enhancedSentiment = enhancedSentimentAnalysis(fileName);
-          int stars = Review.starRating(fileName);
+          int stars = enhancedStarRating(fileName);
           
           // String methods requirement - using substring and toUpperCase
           String reviewNumber = fileName.substring(6, 7); // Extract number from "reviewX.txt"
           String status;
-          if (enhancedSentiment > 5) {
+          if (enhancedSentiment > 10) {
               status = "VERY POSITIVE";
-          } else if (enhancedSentiment > 0) {
+          } else if (enhancedSentiment > 5) {
               status = "POSITIVE";
-          } else if (enhancedSentiment > -5) {
+          } else if (enhancedSentiment > 0) {
               status = "NEUTRAL";
           } else {
               status = "NEGATIVE";
@@ -60,7 +68,8 @@ public class geniusBarReview {
    */
   public static String findBestReview() {
       String[] reviewFiles = {"review1.txt", "review2.txt", "review3.txt", 
-                             "review4.txt", "review5.txt", "review6.txt"};
+                             "review4.txt", "review5.txt", "review6.txt", 
+                             "review7.txt", "review8.txt", "review9.txt"};
       
       String bestFile = reviewFiles[0];
       double bestSentiment = enhancedSentimentAnalysis(bestFile);
@@ -86,7 +95,8 @@ public class geniusBarReview {
    */
   public static String findWorstReview() {
       String[] reviewFiles = {"review1.txt", "review2.txt", "review3.txt", 
-                             "review4.txt", "review5.txt", "review6.txt"};
+                             "review4.txt", "review5.txt", "review6.txt", 
+                             "review7.txt", "review8.txt", "review9.txt"};
       
       String worstFile = reviewFiles[0];
       double worstSentiment = enhancedSentimentAnalysis(worstFile);
@@ -155,13 +165,40 @@ public class geniusBarReview {
   }
 
   /**
+   * Calculates star rating based on enhanced total sentiment
+   * Takes a parameter (fileName) as required
+   */
+  public static int enhancedStarRating(String fileName){
+    double totalSentimentVal = enhancedSentimentAnalysis(fileName);
+    
+    if (totalSentimentVal > 10.0){
+      return 5;
+    } 
+    else if (totalSentimentVal > 6.0){
+      return 4;
+    }
+    else if (totalSentimentVal > 3.0){
+      return 3;
+    } 
+    else if (totalSentimentVal > 0.0){
+      return 2;
+    } 
+    else if (totalSentimentVal > -3.0){
+      return 1;
+    }
+    else {
+      return 0;
+    }
+  }
+
+  /**
    * Generates a detailed report for a specific review file
    * Takes a parameter (fileName) as required
    */
   public static void generateDetailedReport(String fileName) {
       double originalSentiment = Review.totalSentiment(fileName);
       double enhancedSentiment = enhancedSentimentAnalysis(fileName);
-      int stars = Review.starRating(fileName);
+      int stars = enhancedStarRating(fileName);
       
       System.out.println("\n--- Detailed Report for " + fileName + " ---");
       System.out.println("Original Sentiment: " + String.format("%.2f", originalSentiment));
@@ -170,11 +207,11 @@ public class geniusBarReview {
       
       // Use enhanced sentiment for assessment
       String assessment;
-      if (enhancedSentiment > 5) {
+      if (enhancedSentiment > 10) {
           assessment = "EXCELLENT service experience";
-      } else if (enhancedSentiment > 0) {
+      } else if (enhancedSentiment > 5) {
           assessment = "POSITIVE service experience";
-      } else if (enhancedSentiment > -5) {
+      } else if (enhancedSentiment > 0) {
           assessment = "NEUTRAL service experience";
       } else {
           assessment = "NEGATIVE service experience";
