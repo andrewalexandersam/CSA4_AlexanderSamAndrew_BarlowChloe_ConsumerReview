@@ -16,7 +16,11 @@ public class geniusBarReview {
       // Compute averages here (so summary always shows them)
       String[] reviewFiles = {"review1.txt", "review2.txt", "review3.txt", 
                              "review4.txt", "review5.txt", "review6.txt", 
-                             "review7.txt", "review8.txt", "review9.txt"};
+                             "review7.txt", "review8.txt", "review9.txt",
+                             "review10.txt", "review11.txt", "review12.txt",
+                             "review13.txt", "review14.txt", "review15.txt",
+                             "review16.txt", "review17.txt", "review18.txt",
+                             "review19.txt", "review20.txt"};
       double sumEnhanced = 0.0;
       int sumStars = 0;
       for (String fileName : reviewFiles) {
@@ -55,7 +59,11 @@ public class geniusBarReview {
   public static void analyzeAllReviews() {
       String[] reviewFiles = {"review1.txt", "review2.txt", "review3.txt", 
                              "review4.txt", "review5.txt", "review6.txt", 
-                             "review7.txt", "review8.txt", "review9.txt"};
+                             "review7.txt", "review8.txt", "review9.txt",
+                             "review10.txt", "review11.txt", "review12.txt",
+                             "review13.txt", "review14.txt", "review15.txt",
+                             "review16.txt", "review17.txt", "review18.txt",
+                             "review19.txt", "review20.txt"};
       
       System.out.println("=== GENIUS BAR REVIEW ANALYSIS ===");
       
@@ -105,7 +113,11 @@ public class geniusBarReview {
   public static String findBestReview() {
       String[] reviewFiles = {"review1.txt", "review2.txt", "review3.txt", 
                              "review4.txt", "review5.txt", "review6.txt", 
-                             "review7.txt", "review8.txt", "review9.txt"};
+                             "review7.txt", "review8.txt", "review9.txt",
+                             "review10.txt", "review11.txt", "review12.txt",
+                             "review13.txt", "review14.txt", "review15.txt",
+                             "review16.txt", "review17.txt", "review18.txt",
+                             "review19.txt", "review20.txt"};
       
       String bestFile = reviewFiles[0];
       double bestSentiment = enhancedSentimentAnalysis(bestFile);
@@ -132,7 +144,11 @@ public class geniusBarReview {
   public static String findWorstReview() {
       String[] reviewFiles = {"review1.txt", "review2.txt", "review3.txt", 
                              "review4.txt", "review5.txt", "review6.txt", 
-                             "review7.txt", "review8.txt", "review9.txt"};
+                             "review7.txt", "review8.txt", "review9.txt",
+                             "review10.txt", "review11.txt", "review12.txt",
+                             "review13.txt", "review14.txt", "review15.txt",
+                             "review16.txt", "review17.txt", "review18.txt",
+                             "review19.txt", "review20.txt"};
       
       String worstFile = reviewFiles[0];
       double worstSentiment = enhancedSentimentAnalysis(worstFile);
