@@ -28,6 +28,24 @@ public class geniusBarReview {
 
       System.out.println("Average Enhanced Sentiment: " + String.format("%.2f", avgEnhanced));
       System.out.println("Average Star Rating: " + String.format("%.2f", avgStars) + " stars");
+
+      // Concluding statement answering whether people like the Genius Bar
+      String conclusion;
+      if (avgStars >= 4.5) {
+          conclusion = "People really like the genius bar";
+      } else if (avgStars >= 3.5) {
+          conclusion = "People like the Genius Bar.";
+      } else if (avgStars >= 2.5) {
+          conclusion = "People are neutral towards the Genius bar.";
+      } else if (avgStars >= 1.5) {
+          conclusion = "People slightly dislike the Genius Bar.";
+      } else if (avgStars >= 0.5) {
+          conclusion = "People don't like the Genius Bar.";
+      } else {
+          conclusion = "People hate the Genius Bar.";
+      }
+
+      System.out.println("\nThe final conlcusion to the question, Do people like the genius bar in apple stores?, is that " + conclusion);
   }
   
   /**
