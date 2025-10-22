@@ -13,16 +13,21 @@ public class geniusBarReview {
       System.out.println("Best Review: " + bestReview);
       System.out.println("Worst Review: " + worstReview);
       
-      // Generate detailed report for each review
-      generateDetailedReport("review1.txt");
-      generateDetailedReport("review2.txt");
-      generateDetailedReport("review3.txt");
-      generateDetailedReport("review4.txt");
-      generateDetailedReport("review5.txt");
-      generateDetailedReport("review6.txt");
-      generateDetailedReport("review7.txt");
-      generateDetailedReport("review8.txt");
-      generateDetailedReport("review9.txt");
+      // Compute averages here (so summary always shows them)
+      String[] reviewFiles = {"review1.txt", "review2.txt", "review3.txt", 
+                             "review4.txt", "review5.txt", "review6.txt", 
+                             "review7.txt", "review8.txt", "review9.txt"};
+      double sumEnhanced = 0.0;
+      int sumStars = 0;
+      for (String fileName : reviewFiles) {
+          sumEnhanced += enhancedSentimentAnalysis(fileName);
+          sumStars += enhancedStarRating(fileName);
+      }
+      double avgEnhanced = sumEnhanced / reviewFiles.length;
+      double avgStars = (double) sumStars / reviewFiles.length;
+
+      System.out.println("Average Enhanced Sentiment: " + String.format("%.2f", avgEnhanced));
+      System.out.println("Average Star Rating: " + String.format("%.2f", avgStars) + " stars");
   }
   
   /**
@@ -36,12 +41,18 @@ public class geniusBarReview {
       
       System.out.println("=== GENIUS BAR REVIEW ANALYSIS ===");
       
+      double sumEnhanced = 0.0;
+      int sumStars = 0;
+      
       // Iteration requirement - loop through all reviews
-      for (int i = 0; i < reviewFiles.length; i++) {
-          String fileName = reviewFiles[i];
+      for (String fileName : reviewFiles) {
           double originalSentiment = Review.totalSentiment(fileName);
           double enhancedSentiment = enhancedSentimentAnalysis(fileName);
           int stars = enhancedStarRating(fileName);
+          
+          // accumulate for averages
+          sumEnhanced += enhancedSentiment;
+          sumStars += stars;
           
           // String methods requirement - using substring and toUpperCase
           String reviewNumber = fileName.substring(6, 7); // Extract number from "reviewX.txt"
@@ -60,6 +71,13 @@ public class geniusBarReview {
                            String.format("%.2f", originalSentiment) + " -> " + 
                            String.format("%.2f", enhancedSentiment) + " sentiment) - " + status);
       }
+      
+      // compute and print averages
+      double avgEnhanced = sumEnhanced / reviewFiles.length;
+      double avgStars = (double) sumStars / reviewFiles.length;
+      System.out.println("\n--- AVERAGES ACROSS ALL REVIEWS ---");
+      System.out.println("Average Enhanced Sentiment: " + String.format("%.2f", avgEnhanced));
+      System.out.println("Average Star Rating: " + String.format("%.2f", avgStars) + " stars");
   }
   
   /**
@@ -189,40 +207,5 @@ public class geniusBarReview {
     else {
       return 0;
     }
-  }
-
-  /**
-   * Generates a detailed report for a specific review file
-   * Takes a parameter (fileName) as required
-   */
-  public static void generateDetailedReport(String fileName) {
-      double originalSentiment = Review.totalSentiment(fileName);
-      double enhancedSentiment = enhancedSentimentAnalysis(fileName);
-      int stars = enhancedStarRating(fileName);
-      
-      System.out.println("\n--- Detailed Report for " + fileName + " ---");
-      System.out.println("Original Sentiment: " + String.format("%.2f", originalSentiment));
-      System.out.println("Enhanced Sentiment: " + String.format("%.2f", enhancedSentiment));
-      System.out.println("Star Rating: " + stars + " stars");
-      
-      // Use enhanced sentiment for assessment
-      String assessment;
-      if (enhancedSentiment > 10) {
-          assessment = "EXCELLENT service experience";
-      } else if (enhancedSentiment > 5) {
-          assessment = "POSITIVE service experience";
-      } else if (enhancedSentiment > 0) {
-          assessment = "NEUTRAL service experience";
-      } else {
-          assessment = "NEGATIVE service experience";
-      }
-      
-      System.out.println("Assessment: " + assessment);
-      
-      // String method requirement - using contains
-      String reviewText = Review.textToString(fileName);
-      if (reviewText.toLowerCase().contains("genius bar")) {
-          System.out.println("Note: Mentions Genius Bar specifically");
-      }
   }
 }
