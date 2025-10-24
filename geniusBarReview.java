@@ -80,7 +80,7 @@ public class geniusBarReview {
           sumEnhanced += enhancedSentiment;
           sumStars += stars;
           
-          // String methods requirement - using substring and toUpperCase
+          // String methods requirement - using substring
           // extract the numeric part of the filename (handles single and multi-digit numbers)
           String reviewNumber = fileName.substring(6, fileName.indexOf('.'));
           String status;
@@ -174,6 +174,7 @@ public class geniusBarReview {
    * Takes a parameter (fileName) as required
    */
   public static double enhancedSentimentAnalysis(String fileName) {
+      // String methods requirement - using toLowerCase
       String text = Review.textToString(fileName).toLowerCase();
       String[] words = text.split(" ");
       double totalSentiment = 0;
