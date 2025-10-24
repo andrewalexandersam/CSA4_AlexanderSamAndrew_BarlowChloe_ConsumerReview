@@ -49,7 +49,7 @@ public class geniusBarReview {
           conclusion = "People hate the Genius Bar.";
       }
 
-      System.out.println("\nThe final conlcusion to the question, Do people like the genius bar in apple stores?, is that " + conclusion);
+      System.out.println("\nThe final conclusion to the question, Do people like the genius bar in apple stores?, is that " + conclusion);
   }
   
   /**
