@@ -81,7 +81,8 @@ public class geniusBarReview {
           sumStars += stars;
           
           // String methods requirement - using substring and toUpperCase
-          String reviewNumber = fileName.substring(6, 7); // Extract number from "reviewX.txt"
+          // extract the numeric part of the filename (handles single and multi-digit numbers)
+          String reviewNumber = fileName.substring(6, fileName.indexOf('.'));
           String status;
           if (enhancedSentiment > 10) {
               status = "VERY POSITIVE";
